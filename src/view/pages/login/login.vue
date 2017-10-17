@@ -32,7 +32,6 @@
 <script>
 import authApi from '@/model/api/auth';
 import { setToken } from '@/config/http';
-import storage from '@/config/localstorage';
 import env from '@/config/env';
 
 export default {
@@ -61,14 +60,14 @@ export default {
     },
     change() {
       this.nowLogin = !this.nowLogin;
-      document.title = `${this.projectName} - ${this.nowLogin?'登录':'注册'}`;
+      document.title = `${this.projectName} - ${this.nowLogin ? '登录' : '注册'}`;
     },
     login() {
       this.loading = true;
       authApi.login(this.info)
-        .then(token => {
+        .then((token) => {
           setToken(token);
-          this.$router.push({name: 'IndexPage'});
+          this.$router.push({ name: 'IndexPage' });
         }, () => {
           this.loading = false;
           $noty.error('登录失败,请重试');

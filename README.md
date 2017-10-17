@@ -1,25 +1,17 @@
 # vue-demo
 
-> 基于: vue-2.5.2
 
-> UI框架: element-ui - 1.4.7
-
-> 路由管理: vue-router
-
-> 状态管理: vuex
-
-> http: axios
-
-> 时间处理: moment
-
-> 工具库: lodash
-
-> 提示: noty
-
-> 代码风格: eslint(airbnb)
-
-
-## Build Setup
+| 库／框架 | 作用 | 说明 |
+| ------| ------ | ------ |
+| vue | 基础 |  2.5.2  |
+| element-ui | UI 框架 | 入侵较少, 可去除或选用其他 UI 框架 |
+| vue-router | 路由管理 |    |
+| vuex |状态管理 |    |
+| axios |http基|  |
+| moment | 时间处理 |    |
+| lodash | 工具库 |   |
+| noty | 提示 |  |
+| eslint(airbnb) | 代码风格 |  |
 
 ``` bash
 # install dependencies

@@ -1,7 +1,10 @@
+import env from '@/config/env';
+
 /**
  * PREFIX
  */
-const PREFIX = 'linkface_';
+const PREFIX = `${env.PROJECT_NAME}_`;
+
 function formatKey(key) {
   return (PREFIX + key).toUpperCase();
 }

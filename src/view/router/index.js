@@ -54,7 +54,7 @@ router.beforeEach((to, from, next) => {
 });
 
 router.afterEach((to) => {
-  document.title = `${env.PROJECT_NAME} - ${to.meta || 'Linkface'}`;
+  document.title = `${env.PROJECT_NAME} - ${to.meta}`;
   if (to.name === 'Login') {
     document.title = `${env.PROJECT_NAME} - 登录`;
   }
