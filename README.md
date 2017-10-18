@@ -7,10 +7,11 @@
 | element-ui | UI 框架 | 入侵较少, 可去除或选用其他 UI 框架 |
 | vue-router | 路由管理 |    |
 | vuex |状态管理 |    |
-| axios |http基|  |
+| axios |http|  |
 | moment | 时间处理 |    |
 | lodash | 工具库 |   |
 | noty | 提示 |  |
+| scss | css  |  |
 | eslint(airbnb) | 代码风格 |  |
 
 ``` bash
