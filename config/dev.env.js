@@ -4,5 +4,5 @@ const prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  API_URL: '"https://management-api.daovoice.dev/v1"',
+  API_URL: '"http://118.89.221.56:99/api"',
 })

@@ -2,7 +2,7 @@
   <div class="login">
     <div class="bg"></div>
     <div class="account-container">
-      <h2 class="title ng-binding">{{nowLogin?'登录':'注册'}} {{projectName}} 帐号</h2>
+      <h2 class="title">{{nowLogin?'登录':'注册'}} {{projectName}} 帐号</h2>
       <hr class="header-line">
       <form autocomplete="off">
         <div class="form-group">
@@ -12,7 +12,7 @@
         <div class="form-group">
           <label>密码
           </label>
-          <input type="password" v-model="info.pasword">
+          <input type="password" v-model="info.password">
         </div>
       </form>
       <el-button 
@@ -33,6 +33,7 @@
 import authApi from '@/model/api/auth';
 import { setToken } from '@/config/http';
 import env from '@/config/env';
+import storage from '@/config/localstorage';
 
 export default {
   name: 'Login',
@@ -42,12 +43,24 @@ export default {
       nowLogin: true,
       info: {
         account: '',
-        pasword: '',
+        password: '',
       },
       loading: false,
     };
   },
+  // 跳到这个页面不管是用户主动推出登录，还是因为 http 出现 401 还是用户手动输入地址
   created() {
+    // 如果有token，都需要拿着token去后端验证一下，如果token过期需要清空
+    if (storage.token) {
+      authApi.getInfoByToken()
+        .then(() => {
+          this.$router.push({ name: 'IndexPage' });
+        }, () => {
+          // token 不可用，请求头的 token 置空清空掉
+          setToken();
+          storage.clear();
+        });
+    }
   },
   methods: {
     clickBtn() {
@@ -65,12 +78,12 @@ export default {
     login() {
       this.loading = true;
       authApi.login(this.info)
-        .then((token) => {
-          setToken(token);
+        .then((res) => {
+          setToken(res.token);
           this.$router.push({ name: 'IndexPage' });
         }, () => {
           this.loading = false;
-          $noty.error('登录失败,请重试');
+          this.$message.error('登录失败,请重试');
         });
     },
     register() {

@@ -2,26 +2,34 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import storage from '@/config/localstorage';
 import env from '@/config/env';
+import { setToken } from '@/config/http';
 import Login from '@/view/pages/login/login';
 import IndexPage from '@/view/pages/index';
 import Crash from '@/view/pages/crash/crash';
+
+import PesonalCenter from '@/view/pages/personal-center/router';
+import SystemCenter from '@/view/pages/system/router';
 
 Vue.use(Router);
 const routes = [
   {
     path: '/',
     name: 'IndexPage',
-    meta: process.env.PROJECT_NAME,
+    meta: '首页',
     component: IndexPage,
+    children: [
+      PesonalCenter,
+      SystemCenter,
+    ],
   },
   {
-    path: '/login',
+    path: '/Login',
     name: 'Login',
     meta: '登录',
     component: Login,
   },
   {
-    path: '/crash',
+    path: '/Crash',
     name: 'Crash',
     meta: '500',
     component: Crash,
@@ -44,9 +52,12 @@ router.beforeEach((to, from, next) => {
   } else {
     const hash = location.hash;
     if (hash !== '#/login' && hash !== '#/crash') {
-      storage.clear();
-      location.href = '#/login';
-      location.reload();
+      setToken();
+      // location.href = '#/login';
+      // location.reload();
+      router.push({
+        name: 'Login',
+      });
     } else {
       next();
     }

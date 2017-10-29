@@ -27,6 +27,7 @@ module.exports = {
     'moment': true,
     'Noty': true,
     '$noty': true,
+    'Progress': true,
   },
   // add your custom rules here
   'rules': {
@@ -41,6 +42,9 @@ module.exports = {
     }],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "no-param-reassign": ["off", { "props": true }],
+    'no-console': ["error", { allow: ["warn", "error", "log"] }],
+    'class-methods-use-this': "off"
   }
 }

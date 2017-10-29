@@ -1,6 +1,6 @@
 import env from '@/config/env';
 
-const PREFIX = `${env.PROJECT_NAME}_`;
+const PREFIX = `${env.PREFIX}_`;
 
 function formatKey(key) {
   return (PREFIX + key).toUpperCase();
