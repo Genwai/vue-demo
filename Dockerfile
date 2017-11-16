@@ -13,6 +13,8 @@ WORKDIR /app
 
 COPY . /app/
 
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 80
 
 RUN  npm install \
@@ -21,6 +23,6 @@ RUN  npm install \
      && rm -rf dist/ \
      && rm -rf node_modules/
     
-CMD ["nginx","-g","daemon off;"]
+CMD nginx -g "daemon off;"
 
 
