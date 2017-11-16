@@ -13,13 +13,14 @@ WORKDIR /app
 
 COPY . /app/
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 
 RUN  npm install \
      && npm run build \
      && cp -r dist/* /usr/share/nginx/html/ \
+     && cp -r dist/* /var/www/html \
      && rm -rf dist/ \
      && rm -rf node_modules/
     
