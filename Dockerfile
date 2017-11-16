@@ -11,7 +11,6 @@ RUN apt-get install -y nginx
 
 WORKDIR /app
 
-COPY nginx.conf /etc/nginx/nginx.conf
 COPY ./package.json /app/
 
 RUN  npm install \
