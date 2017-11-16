@@ -11,10 +11,9 @@ RUN apt-get install -y nginx
 
 WORKDIR /app
 
-COPY ./package.json /app/
+COPY . /app/
 
 RUN  npm install \
-     && cp -r . /app/ \
      && npm run build \
      && cp -r dist/* /usr/share/nginx/html/ \
      && rm -rf dist/ \
